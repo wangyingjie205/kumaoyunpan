@@ -5,7 +5,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import './permission'
+
 //引入element组件库
+
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Element)
@@ -15,7 +18,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+const THIS = new Vue({
   components: { App },
   router,
   store,
