@@ -7,9 +7,9 @@
 
 <style >
   body {
-    font-family: "微软雅黑";
-    margin: 0px auto;
-    background-color: #2d3a4b;
+    font-family: "宋体";
+    background-color:#696969;
+    font-size:30px;
   }
 </style>
 

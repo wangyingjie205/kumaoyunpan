@@ -1,6 +1,6 @@
 <template>
   <div>
-    <iframe src="https://www.jianguoyun.com/d/signup" frameborder="0" width="100%" height="700px"></iframe>
+    <iframe src="https://www.jianguoyun.com/d/signup" frameborder="0" width="100%" height="1200px"></iframe>
   </div>
 </template>
 
@@ -11,11 +11,4 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  div {
-    position: relative;
-    left: -10px;
-    top: -10px;
-  }
 </style>

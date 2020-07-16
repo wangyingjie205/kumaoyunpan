@@ -1,6 +1,6 @@
 <template>
   <div>
-    <iframe src="https://cloud.seafile.com/" frameborder="0" width="100%" height="700px"></iframe>
+    <iframe src="https://cloud.seafile.com/"  frameborder="0" height="1200px" width="100%"></iframe>
   </div>
 </template>
 
@@ -12,10 +12,3 @@ export default {
 }
 </script>
 
-<style scoped>
-  div {
-    position: relative;
-    left: -10px;
-    top: -10px;
-  }
-</style>

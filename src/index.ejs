@@ -9,10 +9,20 @@
         require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, '\\\\') %>')
       </script>
     <% } %>
+<style type="text/css">
+ .b
+  { 
+ width:100%;
+height:100%;
+position: absolute;
+  left: -1%;
+top:-1%;
+  }
+</style>
   </head>
   
   <!-- 隐藏边框 -->
-  <body>
+  <body class=b>
     <div id="app">
   </div>
   </body>
