@@ -31,7 +31,7 @@ const loading = {
 
 const request = axios.create({
     //请求超时5000毫秒
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://139.224.119.178:3000',
     timeout: 5000
 })
 

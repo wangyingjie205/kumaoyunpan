@@ -16,20 +16,10 @@ export default {
 
     var textAreaDom = document.querySelector("#textArea");
 
-    /*
 
-问题：
-    1、新建 打开 保存的问题
+    var isSave = true; //文件保存标识符
 
-    2、如果已经保存 第二次保存的时候不提示直接保存
-
-    3、判断文件是否已经保存  改变软件左上角的内容
-
-*/
-
-    var isSave = true; //判断文件是否保存
-
-    var currentFile = ""; //保存当前文件的路径
+    var currentFile = ""; //保存文件的路径
 
     //内容变化的时候 让isSave等于false
     textAreaDom.oninput = function() {
@@ -53,7 +43,7 @@ export default {
 
       switch (action) {
         case "new":
-          //判断文件是否保存  如果没有保存提示   并保存
+          //先判断文件是否已经保存 ，如若没有保存则提示并保存
 
           askSaveDialog();
 
@@ -73,7 +63,7 @@ export default {
 
           if (dir) {
             var fsData = fs.readFileSync(dir[0]);
-            //获取文件里面的东西
+            //得到文件里面的东西
             textAreaDom.value = fsData;
           }
           break;
@@ -94,13 +84,13 @@ export default {
       }
     });
 
-    //判断文件师傅保存并执行保存功能
+    //实现文件保存
 
     function askSaveDialog() {
       if (!isSave) {
         var index = remote.dialog.showMessageBox({
           type: "question",
-          message: "是否要保存此文件?",
+          message: "请您确认保存?",
           buttons: ["Yes", "No"]
         });
 
@@ -114,10 +104,10 @@ export default {
     //执行保存的方法
     function saveCurrentDoc() {
       if (!currentFile) {
-        //当前文件路径不存在 提示保存
+        //显示保存路径以及类型
 
         var dir = remote.dialog.showSaveDialog({
-          defaultPath: "aaa.txt",
+          defaultPath: ".txt",
           filters: [{ name: "All Files", extensions: ["*"] }]
         });
 
@@ -126,16 +116,10 @@ export default {
 
           fs.writeFileSync(currentFile, textAreaDom.value);
           isSave = true;
-          //改变软件的标题
+          //修改文本名
           document.title = currentFile;
         }
-      } else {
-        fs.writeFileSync(currentFile, textAreaDom.value);
-        isSave = true;
-
-        //改变软件的标题
-        document.title = currentFile;
-      }
+      } 
     }
   }
 };
@@ -143,20 +127,18 @@ export default {
 
 <style scoped>
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 1px;
+  padding: 1px;
 }
 #textArea {
-  font-size: 14px;
+  font-size: 20px;
 
   position: fixed;
 
-  top: 0px;
-  bottom: 0px;
-
-  width: 100%;
-  height: 100%;
-  margin-left: -10px;
-  margin-top: 50px;
+  bottom: 100px;
+top:100px;
+  width: 98%;
+  height: 85%;
+ margin-top:50px;
 }
 </style>

@@ -6,7 +6,7 @@
       :model="formInline"
       label-width="100px"
       class="demo-ruleForm"
-      style="width:100%;"
+      style="width:100%;height:160px;"
     >
       <el-form-item>
         <el-button type="primary" plain @click="createFile">新建文件</el-button>
@@ -14,16 +14,13 @@
       <el-form-item>
         <el-button type="primary" plain @click="createDir">新建文件夹</el-button>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" plain @click="dakai">编辑器</el-button>
-      </el-form-item>
       <el-form-item label>
         <el-input
           id="input"
           @input="reload"
           v-model="formInline.basepath"
-          placeholder="请在此输入框中输入磁盘或目录的路径,并以'/'结尾,windows:C:/,linux: /,注意:请确保路径下没有不可读的系统文件.若子目录文件较多请耐心等待."
-          style="width:1341px;"
+          placeholder="请在此输入框中输入磁盘或目录的路径"
+          style="width:100%;"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -31,7 +28,7 @@
           <el-input
             v-model="filename"
             placeholder="请在此输入框中输入,点击提交后为保证正常运行,请重新输入目录或磁盘的值."
-            style="width:1341px;"
+            style="width:100%;"
             id="input3"
           ></el-input>
         </div>
@@ -43,14 +40,14 @@
     </el-form>
 
     <!-- 文件列表 1340-->
-    <el-table :data="data" border style="width: 1341px; margin-top: -50px;">
-      <el-table-column class="name-wrapper" prop="number" label="序号" width="100px"></el-table-column>
-      <el-table-column prop="name" label="名称" width="360px"></el-table-column>
-      <el-table-column prop="type" label="类型" width="100px"></el-table-column>
-      <el-table-column prop="size" label="大小" width="100px"></el-table-column>
-      <el-table-column prop="mtime" label="时间" width="200px">
-        <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
+    <el-table :data="data" border style="width: 100%;height:100%; margin-top: -50px;font-size:30px;">
+      <el-table-column class="name-wrapper" prop="number" label="序号" width="100%"></el-table-column>
+      <el-table-column prop="name" label="名称" width="800%"></el-table-column>
+      <el-table-column prop="type" label="类型" width=200%"></el-table-column>
+      <el-table-column prop="size" label="大小" width="200%"></el-table-column>
+      <el-table-column prop="mtime" label="时间" width="150%">
+        <template slot-scope="scope" >
+          <el-popover trigger="hover" placement="top" font-size:40px;>
             <p>创建时间: {{ scope.row.ctime }}</p>
             <p>最后修改时间: {{ scope.row.mtime }}</p>
             <p>最后访问时间: {{ scope.row.atime }}</p>
@@ -60,12 +57,12 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column prop label="操作" width="480px">
+      <el-table-column prop label="操作" width="400%">
         <template slot-scope="scope">
-          <el-button type="info" plain @click="rename(scope.$index, scope.row)">重命名</el-button>
-          <el-button button type="primary" plain @click="copyFile(scope.$index, scope.row)">复制</el-button>
-          <el-button type="danger" plain @click="ulink(scope.$index, scope.row)">删除</el-button>
-        </template>
+          <el-button type="info" plain @click="rename(scope.$index, scope.row)" class="btnsize">重命名</el-button>
+          <el-button button type="primary" plain @click="copyFile(scope.$index, scope.row) class="btnsize">复制</el-button>
+          <el-button type="danger" plain @click="ulink(scope.$index, scope.row)" class="btnsize">删除</el-button>
+       </template>
       </el-table-column>
     </el-table>
   </div>
@@ -91,12 +88,12 @@ export default {
   },
   methods: {
     dakai() {
-          alert('点击了');
+          alert('已经点击');
 
 
     ipcRenderer.send('openWindow');
     },
-    // 复制文件或文件夹
+    // copy文件
     btn5() {
       const btn5 = document.getElementById("bt5");
       const input2 = document.getElementById("input2");
@@ -114,7 +111,7 @@ export default {
       } else {
         let stat = fs.stat;
         let copy = function(src, dst) {
-          // 读取目录中的所有文件/目录
+          // read目录中的所有文件/目录
           fs.readdir(src, function(err, paths) {
             if (err) {
               throw err;
@@ -137,7 +134,7 @@ export default {
                   // 通过管道来传输流
                   readable.pipe(writable);
                 }
-                // 如果是目录则递归调用自身
+                // 如果选中为目录则递归调用本身
                 else if (st.isDirectory()) {
                   exists(_src, _dst, copy);
                 }
@@ -521,5 +518,13 @@ export default {
 .none {
   display: none;
   margin-bottom: 50px;
+font-size:50px;
 }
 </style>
+
+<style type="text/css">
+.btnsize{
+width:300%;
+height:300%;
+}
+<style>

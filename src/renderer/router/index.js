@@ -10,7 +10,7 @@ import TencentMicroCloud from '../components/views/TencentMicroCloud'
 import PrivateStorage from '../components/views/PrivateStorage'
 import SkyDrive from '../components/views/SkyDrive'
 import FileManagement from '../components/views/FileManagement'
-import Text from '../components/views/text'
+import Text from '../components/views/Text'
 
 Vue.use(Router)
 
@@ -72,18 +72,6 @@ export default new Router({
       }]
     },
 
-    //文件备份
-    {
-      path: '/FileBackup',
-      component: Layout,
-      children: [{
-        path: '/',
-        component: FileBackup,
-        meta: {
-          title: '文件备份'
-        }
-      }]
-    },
     {
       path: '/SkyDrive',
       component: Layout,
@@ -91,7 +79,7 @@ export default new Router({
         path: '/',
         component: SkyDrive,
         meta: {
-          title: '城通网盘'
+          title: '亿方云盘'
         }
       }]
     },
@@ -113,7 +101,7 @@ export default new Router({
         path: '/',
         component: Text,
         meta: {
-          title: '文本编辑'
+          title: '编写文本'
         }
       }]
     },
